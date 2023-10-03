@@ -160,32 +160,81 @@ console.log(sumYearsLives)
   // "First Last", e.g., "Becker, Carl" should be mapped to "Carl Becker".
   // Hint: As a start, consider using the String.prototype.split method to "split" the 
   // string using ', ' as the separator
+
+//const firstLastNames = people.forEach((person) => person.split(', '))
+
+//[0].split(", ")
+//console.log(firstLastNames)
+
+
+const reorderedNames = people.map((person) => {
+    let firstThenLast = person.split(', ')
+    firstThenLast.reverse()
+    //console.log(firstThenLast)
+    return firstThenLast.join()
+})
+
+console.log(reorderedNames)
+
   
+// const votes = ['yes', 'no', 'yes', 'no', 'no']
+// const tally = votes.reduce((runningTally, vote) =>{
+//     runningTally[vote] = runningTally[vote] ? runningTally[vote] + 1 : 1 
+//   return runningTally      
+//     },
+// {})
+// console.log(tally)
+
   
-  
-  
-  const data = [
+const data = [
     'car', 'car', 'truck', 'truck', 'bike', 'walk', 'car', 'van',
     'bike', 'walk', 'car', 'van', 'car', 'truck'
-  ];
-  
+];
+const carTally = data.reduce((runningCarTally, car) =>{
+    runningCarTally[car] = runningCarTally[car] ?runningCarTally[car] + 1 : 1
+    return runningCarTally
+    },
+{})
+console.log(carTally)
+
+
   // Array.prototype.reduce()
-  // 7. Count the number of instances for each of the data items. The reduce should return an object where the keys are 'car', 'truck', etc. and the values are the count.
-  // Hint: Since you want to return an object, be sure to pass an empty {} for the initial value of the "accumulator".
+  // 7. Count the number of instances for each of the data items. The reduce should return an 
+  //object where the keys are 'car', 'truck', etc. and the values are the count.
+  // Hint: Since you want to return an object, be sure to pass an empty {} for the initial 
+  //value of the "accumulator".
   
   
-  
-  const devs = [
-    { name: 'Wes', year: 1988 },
-    { name: 'Kait', year: 1986 },
-    { name: 'Irv', year: 1970 },
-    { name: 'Lux', year: 2015 }
-  ];
-  
+
+const devs = [
+{ name: 'Wes', year: 1988 },
+{ name: 'Kait', year: 1986 },
+{ name: 'Irv', year: 1970 },
+{ name: 'Lux', year: 2015 }
+];
+
+// const currentDate = new Date('Oct 2, 23')
+// const currentYear = currentDate.getFullYear()
+//console.log(currentYear)
+
+const oldKids = devs.some((dev) => {
+    const currentDate = new Date()
+    const currentYear = currentDate.getFullYear()
+    return currentYear - dev.year > 19
+})
+
+console.log(oldKids)
   // Array.prototype.some()
   // 8. Check if at least one person is 19 or older?
   // Hint: To get today's year, use the getFullYear method of new Date(), i.e., new Date().getFullYear()
   
+  const allOldKids = devs.every((dev) => {
+    const currentDate = new Date()
+    const currentYear = currentDate.getFullYear()
+    return currentYear - dev.year > 19
+})
+
+console.log(allOldKids)
   
   // Array.prototype.every()
   // 9. Check if everyone is 19 or older?
@@ -203,12 +252,17 @@ console.log(sumYearsLives)
   // Array.prototype.find()
   // 10. Find the comment with the id of 823423
   
-  
+  const specialId = comments.find((comment)=> comment.id === 823423)
+
+  console.log(specialId)
   
   // Array.prototype.findIndex()
   // 11. Find the index of the comment with an id of 123523
   
-  
+   
+  const specialIdIdx = comments.findIndex((comment)=> comment.id === 123523)
+
+  console.log(specialIdIdx)
   
   //Verify console.log Output
 //   [ { first: 'Galileo', last: 'Galilei', year: 1564, passed: 1642 },
